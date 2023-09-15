@@ -1,0 +1,75 @@
+[
+    {  
+      "id": 1, 
+      "image": "https://i.ibb.co/hKrnbmN/Rectangle-1.png",
+      "course_name": "Introduction to C Programming",
+      "credit": 3,
+      "price": 15000,
+      "course_details": "Learn the basics of programming with this introductory course."
+    },
+    { 
+      "id": 2,
+      "image": "https://i.ibb.co/r5DJ4Hv/Rectangle-2.png",
+      "course_name": "Introduction to Algorithms",
+      "credit": 4,
+      "price": 25000,
+      "course_details": "Master essential data structures and algorithms for software development."
+    },
+    {
+      "id": 3,
+      "image": "https://i.ibb.co/Wshxf8f/Rectangle-3.png",
+      "course_name": "Introduction to C++ for DSA",
+      "credit": 5,
+      "price": 21299,
+      "course_details": "Become a full-stack web developer with hands-on projects."
+    },
+    { 
+      "id": 4,
+      "image": "https://i.ibb.co/PDGWRXf/Rectangle-4.png",
+      "course_name": "Basic Data Structures",
+      "credit": 4,
+      "price": 27900,
+      "course_details": "Dive into the world of machine learning and AI with practical exercises."
+    },
+    {
+      "id": 5,
+      "image": "https://i.ibb.co/qCC6J6L/Rectangle-5.png",
+      "course_name": "Introduction to OOP Python",
+      "credit": 3,
+      "price": 10000,
+      "course_details": "Learn digital marketing techniques to boost your online presence."
+    },
+    { 
+      "id": 6,
+      "image": "https://i.ibb.co/37fSwzc/Rectangle-6.png",
+      "course_name": "Software Engineering",
+      "credit": 2,
+      "price": 20000,
+      "course_details": "Discover the fundamentals of graphic design and unleash your creativity."
+    },
+    {
+      "id": 7,
+      "image": "https://i.ibb.co/513sR81/Rectangle-7.png",
+      "course_name": "AWS, Cloud Computing",
+      "credit": 3,
+      "price": 16900,
+      "course_details": "Develop ethical leadership skills for the business world."
+    },
+    {
+      "id": 8,
+      "image": "https://i.ibb.co/f17N9cq/Rectangle-8.png",
+      "course_name": "Database (MySQL)",
+      "credit": 4,
+      "price": 19000,
+      "course_details": "Learn financial planning strategies and investment techniques."
+    },
+    {
+      "id": 9,
+      "image": "https://i.ibb.co/278PJC9/Rectangle-9.png",
+      "course_name": "Problem-Solving Part",
+      "credit": 4,
+      "price": 12000,
+      "course_details": "Explore practical AI applications in various industries."
+    }
+  ]
+  
