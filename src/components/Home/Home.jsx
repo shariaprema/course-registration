@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { GoBook } from "react-icons/go";
 import { FiDollarSign } from "react-icons/fi";
 import Cart from "../Cart/Cart";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const Home = () => {
 
     const [allCourse, setAllCourse ] = useState([]);
@@ -15,15 +19,27 @@ const Home = () => {
         .then(data=>setAllCourse(data))
     }),[])
 
-
+    
     const handleAllCourse = (course) =>{
-        setSelectedCourse([...selectedCourse,course]);
-        
+        const isExist = selectedCourse.find((item)=> item.id == course.id);
+        if(isExist){
+            return toast.warn("This Course Already selected !!",{
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+        else{
+            setSelectedCourse([...selectedCourse,course]);
+        }
+
+  
     }
-    console.log(selectedCourse);
-
-
-
 
 
     return (
@@ -84,10 +100,10 @@ const Home = () => {
     </div>
 
 
-      
-        
-        
-        </>
+
+    <ToastContainer />
+
+    </>
         
     );
 };
