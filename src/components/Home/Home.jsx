@@ -10,6 +10,9 @@ const Home = () => {
 
     const [allCourse, setAllCourse ] = useState([]);
     const [selectedCourse, setSelectedCourse ] = useState([]);
+    const [selectedPrice, setSelectedPrice] = useState([]);
+    const [selectedCredit, setSelectedCredit] = useState([]);
+
 
     useEffect((()=>{
 
@@ -22,6 +25,11 @@ const Home = () => {
     
     const handleAllCourse = (course) =>{
         const isExist = selectedCourse.find((item)=> item.id == course.id);
+
+        let countPrice = course.price;
+        let count = course.credit;
+        
+
         if(isExist){
             return toast.warn("This Course Already selected !!",{
                 position: "top-center",
@@ -34,7 +42,20 @@ const Home = () => {
                 theme: "colored",
             });
         }
-        else{
+        else{ 
+
+            selectedCourse.forEach(itemPrice=>{
+                countPrice = countPrice + itemPrice.price;
+            })
+            
+
+            selectedCourse.forEach(item=>{
+                count = count + item.credit;
+            })
+
+
+            setSelectedPrice(countPrice);
+            setSelectedCredit(count);
             setSelectedCourse([...selectedCourse,course]);
         }
 
@@ -92,7 +113,9 @@ const Home = () => {
 
         <div className="w-1/4">
             <h2>length course:{selectedCourse.length }</h2>
-            <Cart selectedCourse={selectedCourse}></Cart>
+            <Cart selectedCourse={selectedCourse}
+             selectedCredit={selectedCredit}
+             selectedPrice={selectedPrice}></Cart>
 
         </div>
 

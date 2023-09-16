@@ -1,4 +1,7 @@
-const Cart = ({selectedCourse}) => {
+import PropTypes from 'prop-types';
+
+const Cart = ({selectedCourse, selectedCredit, selectedPrice}) => {
+
     return (
         <div>
 
@@ -21,9 +24,9 @@ const Cart = ({selectedCourse}) => {
                </div>
                 <hr />
 
-                <h1 className="text-base font-medium text-[#1C1B1BCC] pt-3 pb-3">Total Credit Hour :</h1>
+                <h1 className="text-base font-medium text-[#1C1B1BCC] pt-3 pb-3">Total Credit Hour: {selectedCredit}</h1>
                 <hr />
-                <h1 className=" text-base font-semibold text-[#1C1B1BCC] pt-3 pb-3">Total Price :  USD :</h1>
+                <h1 className=" text-base font-semibold text-[#1C1B1BCC] pt-3 pb-3">Total Price: {selectedPrice} USD</h1>
                 <hr />
 
                 </div>
@@ -33,4 +36,8 @@ const Cart = ({selectedCourse}) => {
     );
 };
 
+    Cart.propTypes = {
+   
+        selectedCourse: PropTypes.array,
+    }
 export default Cart;
