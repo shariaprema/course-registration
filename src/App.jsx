@@ -11,7 +11,7 @@ function App() {
       <div className='bg-[#F3F3F3]'>
       <Header></Header>
 
-      <div className="mx-auto max-w-7xl ">
+      <div className="mx-auto max-w-7xl mt-8 ">
       <Home></Home>
       </div>
       </div>

@@ -2,23 +2,23 @@ import { useEffect, useState } from "react";
 import { GoBook } from "react-icons/go";
 import { FiDollarSign } from "react-icons/fi";
 import Cart from "../Cart/Cart";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2'
 
+const fixedCreditHours = 20;
 
 const Home = () => {
 
     const [allCourse, setAllCourse ] = useState([]);
     const [selectedCourse, setSelectedCourse ] = useState([]);
-    const [selectedPrice, setSelectedPrice] = useState([]);
-    const [selectedCredit, setSelectedCredit] = useState([]);
+    const [selectedPrice, setSelectedPrice] = useState(0);
+    const [selectedCredit, setSelectedCredit] = useState(0);
+    const [remainingCreditHours, setRemainingCreditHours] = useState(0);
 
 
     useEffect((()=>{
 
         fetch('data.json')
         .then(res=>res.json())
-        // .then(data=>console.log(data))
         .then(data=>setAllCourse(data))
     }),[])
 
@@ -31,32 +31,42 @@ const Home = () => {
         
 
         if(isExist){
-            return toast.warn("This Course Already selected !!",{
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            Swal.fire({
+                position: 'top-center',
+                icon: 'warning',
+                title: 'Already selected !!',
+                showConfirmButton: false,
+                timer: 1600
+              })
+              
         }
+
+
         else{ 
 
             selectedCourse.forEach(itemPrice=>{
                 countPrice = countPrice + itemPrice.price;
             })
             
-
             selectedCourse.forEach(item=>{
                 count = count + item.credit;
             })
 
+            const totalCreditRemaining = fixedCreditHours - count;
 
-            setSelectedPrice(countPrice);
+            if(count > 20){
+               return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Error: Course credit exceeds 20!!',
+              })
+            }
+
             setSelectedCredit(count);
+            setRemainingCreditHours(totalCreditRemaining);
+            setSelectedPrice(countPrice);
             setSelectedCourse([...selectedCourse,course]);
+  
         }
 
   
@@ -71,8 +81,6 @@ const Home = () => {
          
 
          <div className="w-3/4">
-         <h2 className="text-xl text-center font-semibold">Course:{allCourse.length} </h2>
-         {/* card-container */}
          <div className="grid lg:grid-cols-3 gap-8">
  
             {
@@ -83,7 +91,7 @@ const Home = () => {
                     </figure>
                     <div className="items-center text-center px-2 m-3">
                         <div>
-                            <h2 className="text-lg text-[#1C1B1B] font-semibold mt-3"> {course.course_name}</h2>
+                            <h2 className="text-lg text-[#1C1B1B] font-semibold mt-3 text-justify"> {course.course_name}</h2>
                             <p className="text-[#1C1B1B99] text-sm font-normal mt-3 text-justify">{course.course_details}
                             </p>
                         </div>
@@ -96,7 +104,7 @@ const Home = () => {
                         </div>
 
 
-                        <div className=" ">
+                        <div>
                         <button onClick={()=> handleAllCourse(course)} className="btn hover:bg-[#2F80ED] bg-[#2F80ED] text-[#fff] w-[270px] h-[40px] mt-3 mx-auto p-2">Select</button>
                         </div>
                     </div>
@@ -109,22 +117,16 @@ const Home = () => {
          </div>
          </div>
 
-        {/* cart section */}
-
         <div className="w-1/4">
-            <h2>length course:{selectedCourse.length }</h2>
             <Cart selectedCourse={selectedCourse}
              selectedCredit={selectedCredit}
-             selectedPrice={selectedPrice}></Cart>
+             selectedPrice={selectedPrice}
+             remainingCreditHours={remainingCreditHours}></Cart>
 
         </div>
 
 
     </div>
-
-
-
-    <ToastContainer />
 
     </>
         
